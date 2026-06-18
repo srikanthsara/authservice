@@ -16,10 +16,13 @@ public class JwtUtil {
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(new Date())
-                .expiration(new Date(
+                .expiration(
+                        new Date(
                                 System.currentTimeMillis()
-                                        + AuthConstants.DAY_TIME_IN_SEC))
-                .signWith(Keys.hmacShaKeyFor(AuthConstants.SECRET.getBytes()))
+                                        + AuthConstants.DAY_TIME_IN_MILLIS))
+                .signWith(
+                        Keys.hmacShaKeyFor(
+                                AuthConstants.SECRET.getBytes()))
                 .compact();
     }
 }
